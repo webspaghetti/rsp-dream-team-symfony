@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Clanky index{% endblock %}
+
+{% block body %}
+    <h1>Clanky index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nazev_clanku</th>
+                <th>Autor_clanku</th>
+                <th>Abstrakt_clanku</th>
+                <th>Text_clanku</th>
+                <th>Img_url</th>
+                <th>Datum_publikace</th>
+                <th>Id_uzivatele</th>
+                <th>Id_kategorie</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for clanky in clankies %}
+            <tr>
+                <td>{{ clanky.id }}</td>
+                <td>{{ clanky.nazevClanku }}</td>
+                <td>{{ clanky.autorClanku }}</td>
+                <td>{{ clanky.abstraktClanku }}</td>
+                <td>{{ clanky.textClanku }}</td>
+                <td>{{ clanky.imgUrl }}</td>
+                <td>{{ clanky.datumPublikace ? clanky.datumPublikace|date('Y-m-d') : '' }}</td>
+                <td>{{ clanky.idUzivatele }}</td>
+                <td>{{ clanky.idKategorie }}</td>
+                <td>
+                    <a href="{{ path('app_clanky_show', {'id': clanky.id}) }}">show</a>
+                    <a href="{{ path('app_clanky_edit', {'id': clanky.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="10">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_clanky_new') }}">Create new</a>
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Clanky{% endblock %}
+
+{% block body %}
+    <h1>Clanky</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ clanky.id }}</td>
+            </tr>
+            <tr>
+                <th>Nazev_clanku</th>
+                <td>{{ clanky.nazevClanku }}</td>
+            </tr>
+            <tr>
+                <th>Autor_clanku</th>
+                <td>{{ clanky.autorClanku }}</td>
+            </tr>
+            <tr>
+                <th>Abstrakt_clanku</th>
+                <td>{{ clanky.abstraktClanku }}</td>
+            </tr>
+            <tr>
+                <th>Text_clanku</th>
+                <td>{{ clanky.textClanku }}</td>
+            </tr>
+            <tr>
+                <th>Img_url</th>
+                <td>{{ clanky.imgUrl }}</td>
+            </tr>
+            <tr>
+                <th>Datum_publikace</th>
+                <td>{{ clanky.datumPublikace ? clanky.datumPublikace|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Id_uzivatele</th>
+                <td>{{ clanky.idUzivatele }}</td>
+            </tr>
+            <tr>
+                <th>Id_kategorie</th>
+                <td>{{ clanky.idKategorie }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_clanky_index') }}">back to list</a>
+
+    <a href="{{ path('app_clanky_edit', {'id': clanky.id}) }}">edit</a>
+
+    {{ include('clanky/_delete_form.html.twig') }}
+{% endblock %}
